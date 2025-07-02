@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public float speed;
-    public float rotationSpeed;
+    public float speed = 10f;
+    public float rotationSpeed = 50f;
     public float verticalInput;
 
-    // Start is called before the first frame update
+    private Rigidbody rb;
+
     void Start()
     {
-
+        // Obtém o componente Rigidbody ligado ao avião
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        // get the user's vertical input
+        // Obtém a entrada do jogador (setas ou W/S)
         verticalInput = Input.GetAxis("Vertical");
 
-        // move the plane forward at a constant rate
-        transform.Translate(Vector3.back * speed);
+        // Movimento para frente baseado na rotação atual
+        rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
 
-        // tilt the plane up/down based on up/down arrow keys
-        transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
+        // Só rotaciona se pressionar tecla para cima/baixo
+        if (Mathf.Abs(verticalInput) > 0.01f)
+        {
+            Quaternion deltaRotation = Quaternion.Euler(Vector3.right * rotationSpeed * verticalInput * Time.deltaTime);
+            rb.MoveRotation(rb.rotation * deltaRotation);
+        }
     }
 }
