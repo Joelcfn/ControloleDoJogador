@@ -5,7 +5,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public float speed = 20;
-public float turnSpeed;
+    public float turnSpeed;
+    public float horizontalInput;
 
     void Start()
     {
@@ -16,8 +17,9 @@ public float turnSpeed;
     void Update()
     {
         // Move the vehicle forward
-  
-     transform.Translate(Vector3.forward * Time.deltaTime * speed);
-    transform.Translate(Vector3.right * Time.deltaTime * turnSpeed);
+  horizontalInput = Input.GetAxis("Horizontal");
+
+    transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
   }
 }
