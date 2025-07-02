@@ -12,6 +12,5 @@ public class NewMonoBehaviourScript : MonoBehaviour
     void Update()
     {
         // Move the vehicle forward
-transform.Translate(Vector3.forward);
-    }
+ transform.Translate(Vector3.forward * Time.deltaTime * 20);    }
 }
