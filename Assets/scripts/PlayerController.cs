@@ -4,7 +4,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public float speed = 20;
+    public float speed = 5.0f;
     public float turnSpeed;
     public float horizontalInput;
     public float forwardInput;
