@@ -5,6 +5,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public float speed = 20;
+public float turnSpeed;
 
     void Start()
     {
@@ -17,6 +18,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Move the vehicle forward
   
      transform.Translate(Vector3.forward * Time.deltaTime * speed);
-
+    transform.Translate(Vector3.right * Time.deltaTime * turnSpeed);
   }
 }
